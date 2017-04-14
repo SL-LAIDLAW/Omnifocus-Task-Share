@@ -1,10 +1,9 @@
 set configFile to ((path to me as text) & "::") & "config.txt"
 
 set lns to paragraphs of (read file configFile as Çclass utf8È)
-set thisFolder to first item of lns
-set targetNumber to second item of lns
+set targetNumber to first item of lns
 
-
+set thisFolder to POSIX path of ((path to me as text) & "::")
 
 -- Start Script
 set clipboardData to (the clipboard as text)
@@ -50,7 +49,6 @@ tell application "OmniFocus"
 			set the clipboard to taskURL
 			
 			
-			--set taskURL to (do shell script "python '" & thisFolder & "URLencode.py'")
 			
 			set taskURL to "omnifocus:///add?name=" & taskURL
 			
@@ -62,8 +60,7 @@ tell application "OmniFocus"
 				send taskURL to theTarget
 			end tell
 			
-			--set the clipboard to taskURL
-			--set flagged of currentTask to false
+			set flagged of currentTask to false
 			
 		end repeat
 	end tell
